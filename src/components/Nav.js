@@ -1,73 +1,37 @@
 import React from "react";
-
-//* Import Incons
-import { BiClipboard, BiHomeAlt, BiUser } from "react-icons/bi";
-import { BsClipboardData, BsBriefcase, BsChatSquare, BsCodeSlash } from "react-icons/bs";
-
-//? Link
+import { BiHomeAlt, BiUser } from "react-icons/bi";
+import { BsBriefcase, BsChatSquare, BsCodeSlash } from "react-icons/bs";
 import { Link } from "react-scroll";
 
+const items = [
+  { to: "home", icon: <BiHomeAlt />, label: "Inicio" },
+  { to: "about", icon: <BiUser />, label: "Sobre mí" },
+  { to: "work", icon: <BsBriefcase />, label: "Experiencia" },
+  { to: "projects", icon: <BsCodeSlash />, label: "Proyectos" },
+  { to: "contact", icon: <BsChatSquare />, label: "Contacto" },
+];
+
+// Barra inferior flotante (solo mobile / tablet)
 const Nav = () => {
   return (
-    <nav className="fixed bottom-2 lg:bottom-8 w-full overflow-hidden z-50 ">
+    <nav className="fixed inset-x-0 bottom-4 z-50 lg:hidden">
       <div className="container mx-auto">
-        {/* nav inner */}
-        <div className="w-full bg-black/20 h-[96px] backdrop-blur-2x1 rounded-full max-w-[460px] mx-auto px-5 flex justify-between text-2x1 text-white/50 items-center ">
-          <Link
-            to="home"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            offset={-200}
-            className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
-          >
-            <BiHomeAlt />
-          </Link>
-          <Link
-            to="about"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
-          >
-            <BiUser />
-          </Link>
-          {/* <Link
-            to="service"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
-          >
-            <BsClipboardData />
-          </Link> */}
-          <Link
-            to="work"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
-          >
-            <BsBriefcase />
-          </Link>
-          <Link
-            to="projects"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
-          >
-            <BsCodeSlash />
-          </Link>
-          <Link
-            to="contact"
-            activeClass="active"
-            smooth={true}
-            spy={true}
-            className="cursor-pointer w-[60px] h-[60px] flex items-center justify-center"
-          >
-            <BsChatSquare />
-          </Link>
+        <div className="mx-auto flex h-16 max-w-[360px] items-center justify-between rounded-full border border-cream/10 bg-cocoa-900/80 px-2 text-xl text-cream-muted shadow-2xl backdrop-blur-xl">
+          {items.map((it) => (
+            <Link
+              key={it.to}
+              to={it.to}
+              aria-label={it.label}
+              spy
+              smooth
+              offset={-80}
+              duration={600}
+              activeClass="active"
+              className="nav-link flex h-12 w-12 cursor-pointer items-center justify-center rounded-full transition"
+            >
+              {it.icon}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>

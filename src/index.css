@@ -2,92 +2,93 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn {
-  background: linear-gradient(
-    92.23deg,
-    #ff56f6 21.43%,
-    #b936ee 50.63%,
-    #3bace2 100%,
-    #406aff 117.04%
-  );
-  box-shadow: 0px 4.42184px 107.23px rgba(255, 86, 246, 0.51);
-}
-
-.btn:hover {
-  background: linear-gradient(
-    92.23deg,
-    #406aff 21.43%,
-    #3bace2 50.63%,
-    #b936ee 100%,
-    #ff56f6 117.04%
-  );
-}
-
-.titulo-link{
-  transition: 0.3s;
-}
-
-.titulo-link:hover{
-  color: #ff56f6 ;
-  cursor: pointer;
-}
-
-.imagen-proyecto{
-  transition: 0.3s;
-}
-
-.imagen-proyecto:hover{
-  cursor: pointer;
-  transform: scale(1.03);
-  filter: brightness(0.04);
-}
-
-.gradient,
-.active {
-  background: linear-gradient(
-    92.23deg,
-    #406aff 21.43%,
-    #3bace2 50.63%,
-    #b936ee 100%,
-    #ff56f6 117.04%
-  );
-}
-
-.active {
-  color: #fff;
-  padding: 1rem;
-  border-radius: 100%;
-}
-
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply font-secondary text-lg leading-8 text-white;
+    @apply font-secondary text-base leading-7 text-cream bg-cocoa-950 antialiased;
+  }
+  ::selection {
+    @apply bg-topaz text-cocoa-950;
+  }
+}
+
+@layer components {
+  /* Fondo general: glows cálidos + un toque de azul */
+  .site-bg {
+    background:
+      radial-gradient(900px 600px at 85% -10%, rgba(242, 140, 56, 0.18), transparent 60%),
+      radial-gradient(700px 500px at -10% 30%, rgba(142, 195, 230, 0.10), transparent 60%),
+      radial-gradient(800px 600px at 110% 80%, rgba(200, 100, 42, 0.12), transparent 60%),
+      linear-gradient(180deg, #1C120C 0%, #140C08 100%);
+  }
+  .grain::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .section {
+    @apply relative py-20 lg:py-28;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-topaz;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-topaz;
   }
   .h1 {
-    @apply font-primary text-[52px] mb-6 tracking-[10%] uppercase;
+    @apply font-primary font-bold tracking-tight text-cream;
   }
   .h2 {
-    @apply font-primary text-[32px] mb-6 tracking-[10%] uppercase;
+    @apply font-primary text-3xl md:text-5xl font-bold tracking-tight text-cream mt-4 mb-6;
   }
   .h3 {
-    @apply font-primary font-semibold text-[26px] mb-6 leading-[46px];
+    @apply font-primary text-xl md:text-2xl font-semibold text-cream;
   }
+
+  .text-gradient {
+    @apply text-topaz;
+  }
+
+  .card {
+    @apply rounded-3xl border border-cream/10 bg-cocoa-800/60 backdrop-blur-sm;
+  }
+
   .btn {
-    @apply rounded-full font-primary text-white font-medium;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-primary font-semibold transition-all duration-300;
+  }
+  .btn-primary {
+    @apply bg-topaz text-cocoa-950 hover:bg-topaz-light shadow-[0_10px_40px_-10px_rgba(242,140,56,0.7)] hover:-translate-y-0.5;
+  }
+  .btn-ghost {
+    @apply border border-cream/20 text-cream hover:border-noonday hover:text-noonday;
   }
   .btn-sm {
-    @apply h-[48px] px-6 text-sm;
+    @apply h-11 px-5 text-sm;
   }
   .btn-lg {
-    @apply h-[56px] px-10 text-base;
+    @apply h-14 px-8 text-base;
   }
-  .btn-link {
-    @apply text-base;
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-cream/10 bg-cocoa-700/50 px-3 py-1 font-mono text-xs text-cream-muted;
   }
-  .text-gradient {
-    @apply bg-gradient-to-r text-transparent bg-clip-text from-[#42A6E3] to-[#FF56F6] font-bold font-primary hover:from-[#FF56F6] hover:to-[#42A6E3];
+  .chip-blue {
+    @apply border-noonday/25 bg-noonday/10 text-noonday-light;
   }
-  .section {
-    @apply py-8 lg:py-24 lg:h-screen flex items-center;
+
+  .field {
+    @apply w-full rounded-2xl border border-cream/10 bg-cocoa-900/70 px-5 py-4 text-cream outline-none transition placeholder:text-cream-dim focus:border-topaz focus:ring-2 focus:ring-topaz/20;
+  }
+
+  .nav-link.active {
+    @apply bg-topaz text-cocoa-950;
   }
 }
